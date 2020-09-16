@@ -23,7 +23,9 @@ comparison of correlation matrices using randomization test of hypothesized orde
     outputs two objects in a list: first the RTHOR results for each model, second the comparisons
 }
 \examples{
-randmf_results <- randall(n=6,nmat=3,ord=c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1),input="h:/my documents/all/r/sifbend.txt")
-
+randmf_results <- RTHORR::randmf(n=6,
+                                 nmat=3,
+                                 ord=c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1),
+                                 input=system.file("extdata", "input.txt", package = "RTHORR"))
 
 }

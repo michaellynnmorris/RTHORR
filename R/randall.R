@@ -11,7 +11,10 @@
 #' @return Data frame of RTHOR model results, one row per matrix
 #'
 #' @examples
-#' randall_results <- randall(n=6,nmat=3,input="h:/my documents/all/r/sifbend.txt", description=c("sam1", "sam2", "sam3"), ord=c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1))
+#' randall_output <- RTHORR::randall(n=6,
+#'                                   nmat=3,
+#'                                   input=system.file("extdata", "input.txt", package = "RTHORR"),
+#'                                   description = c("sample_one", "sample_two", "sample_three"))
 #'
 #' @import permute
 #'
@@ -19,36 +22,11 @@
 
 
 
-# randall(n=6,nmat=3,ord=(c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1)),input="h:/my documents/all/r/sifbend.txt")
-# randall(n=6,nmat=6,ord=(c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1)),input="h:/my documents/all/r/input.txt",samp=(c("total interest","female interest","male interest","total comp","female comp","male comp")))
-#
-# randall(n=6,nmat=2,ord=(c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1)),input="h:/my documents/all/r/sifBend.txt",samp=(c("sample1","sample2")))
-#
-# randall(n=8,nmat=3,ord=(c(1,2,3,4,3,2,1,1,2,3,4,3,2,1,2,3,4,3,1,2,3,4,1,2,3,1,2,1)),input="h:/my documents/all/r/8type.txt",samp=(c("sample1","sample2")))
 
-
-#RANDALL program to conduct the Randomization Test of Hypothesized Order Relations.
-#Copyright (C) 2016 Terence J. G. Tracey
-
-#This program is free software; you can redistribute it and/or
-#modify it under the terms of the GNU General Public License
-#as published by the Free Software Foundation; either version 2
-#of the License, or (at your option) any later version.
-
-#This program is distributed in the hope that it will be useful,
-#but WITHOUT ANY WARRANTY; without even the implied warranty of
-#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#GNU General Public License for more details.
-
-#You should have received a copy of the GNU General Public License
-#along with this program; if not, write to the Free Software
-#Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
-
-randall<-function(n, nmat, input, samp, ord = c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1)){
-  library("permute")
+randall<-function(n, nmat, input, description, ord = c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1)){
+  # library("permute")
   setMaxperm<-(50000)
-  library("utils")
+  requireNamespace("utils")
   np<- ((n*n)-n)/2
 
   #read input file
@@ -110,7 +88,7 @@ randall<-function(n, nmat, input, samp, ord = c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1)){
     zz<-sample.int(n,n,replace=FALSE,prob=NULL)
     return(zz)}
 
-  if(nper<50000)permat<-allPerms(n, control = how(maxperm = 50000), check = TRUE)
+  if(nper<50000)permat<-permute::allPerms(n, control = how(maxperm = 50000), check = TRUE)
 
   if(nper>=50000) for(ll in 1:nper){permat[ll,]<-t(apply(zz,1,f))}
 
@@ -212,7 +190,8 @@ randall<-function(n, nmat, input, samp, ord = c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1)){
     out[kk,4]<-ntie
     out[kk,5]<-ci
     out[kk,6]<-prob
-    out[kk,7]<-samp[kk]
+    # out[kk,7]<-samp[kk]
+    out[kk,7]<-description[kk]
 
 
   }#end loop kk different matrices

@@ -37,7 +37,7 @@ library(RTHORR)
 randall_output <- RTHORR::randall(n=6,
                                   nmat=3,
                                   input=system.file("extdata", "input.txt", package = "RTHORR"),
-                                  samp = c("sample_one", "sample_two", "sample_three"))
+                                  description = c("sample_one", "sample_two", "sample_three"))
 
 
 #run randmf on input.txt
@@ -48,5 +48,5 @@ randmf_output <- RTHORR::randmf(n=6,
 
 
 #view an example of correlation matrix input
-file.edit(system.file("extdata", "input.txt", package = "RTHORR"))
+# file.edit(system.file("extdata", "input.txt", package = "RTHORR"))
 ```

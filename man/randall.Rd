@@ -8,7 +8,7 @@ randall(
   n,
   nmat,
   input,
-  samp,
+  description,
   ord = c(1, 2, 3, 2, 1, 1, 2, 3, 2, 1, 2, 3, 1, 2, 1)
 )
 }
@@ -19,9 +19,9 @@ randall(
 
 \item{input}{name of the input file}
 
-\item{ord}{prediction ordering (default 6 type RIASEC circumplex)}
-
 \item{description}{any information you wish to enter describing each sample}
+
+\item{ord}{prediction ordering (default 6 type RIASEC circumplex)}
 }
 \value{
 Data frame of RTHOR model results, one row per matrix
@@ -30,6 +30,9 @@ Data frame of RTHOR model results, one row per matrix
 Randomization test of hypothesized order relations
 }
 \examples{
-randall_results <- randall(n=6,nmat=3,input="h:/my documents/all/r/sifbend.txt", description=c("sam1", "sam2", "sam3"), ord=c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1))
+randall_output <- RTHORR::randall(n=6,
+                                  nmat=3,
+                                  input=system.file("extdata", "input.txt", package = "RTHORR"),
+                                  description = c("sample_one", "sample_two", "sample_three"))
 
 }

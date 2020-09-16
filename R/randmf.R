@@ -10,8 +10,10 @@
 #' @return Data frame of RTHOR model results, one row per matrix
 #'
 #' @examples
-#' randmf_results <- randall(n=6,nmat=3,ord=c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1),input="h:/my documents/all/r/sifbend.txt")
-#'
+#' randmf_results <- RTHORR::randmf(n=6,
+#'                                  nmat=3,
+#'                                  ord=c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1),
+#'                                  input=system.file("extdata", "input.txt", package = "RTHORR"))
 #'
 #' @import permute
 #'
@@ -22,30 +24,10 @@
 
 
 
-
-#RANDmf program to conduct the Randomization Test of Hypothesized Order Relations.
-#Copyright (C) 2016 Terence J. G. Tracey
-
-#This program is free software; you can redistribute it and/or
-#modify it under the terms of the GNU General Public License
-#as published by the Free Software Foundation; either version 2
-#of the License, or (at your option) any later version.
-
-#This program is distributed in the hope that it will be useful,
-#but WITHOUT ANY WARRANTY; without even the implied warranty of
-#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#GNU General Public License for more details.
-
-#You should have received a copy of the GNU General Public License
-#along with this program; if not, write to the Free Software
-#Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
-
-
 randmf<-function(n,nmat,ord=c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1),input){
-  library("permute")
+  # library("permute")
   setMaxperm<-(50000)
-  library("utils")
+  requireNamespace("utils")
   np<- ((n*n)-n)/2
 
   #read input file
@@ -109,7 +91,7 @@ randmf<-function(n,nmat,ord=c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1),input){
     zz<-sample.int(n,n,replace=FALSE,prob=NULL)
     return(zz)}
 
-  if(nper<50000)permat<-allPerms(n, control = how(maxperm = 500000), check = TRUE)
+  if(nper<50000)permat<-permute::allPerms(n, control = how(maxperm = 500000), check = TRUE)
 
   if(nper>=50000) for(ll in 1:nper){permat[ll,]<-t(apply(zz,1,f))}
 
