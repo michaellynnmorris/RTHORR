@@ -15,9 +15,9 @@
 #' @examples
 #' randall_output <- RTHORR::randall(n=6,
 #'                                   nmat=3,
+#'                                   ord = "circular6",
 #'                                   input=system.file("extdata", "input.txt", package = "RTHORR"),
-#'                                   description = c("sample_one", "sample_two", "sample_three"),
-#'                                   ord = "circular6")
+#'                                   description = c("sample_one", "sample_two", "sample_three"))
 #'
 #' @import permute
 #'
@@ -26,7 +26,7 @@
 
 
 
-randall<-function(n, nmat, input, description, ord = "circular6"){
+randall<-function(n, nmat, ord = "circular6", input, description){
 
   #process ord input
   if (ord == "circular6"){

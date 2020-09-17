@@ -4,14 +4,16 @@
 \alias{randmf}
 \title{randmf function}
 \usage{
-randmf(n, nmat, ord = c(1, 2, 3, 2, 1, 1, 2, 3, 2, 1, 2, 3, 1, 2, 1), input)
+randmf(n, nmat, ord = "circular6", input)
 }
 \arguments{
 \item{n}{number of variables (rows in the matrix)}
 
 \item{nmat}{number of matrices to be analyzed}
 
-\item{ord}{prediction ordering (default 6 type RIASEC circumplex)}
+\item{ord}{prediction ordering (default "circular6").
+For circular models there are two preset inputs for 6 and 8 variables, "circular6" and "circular8".
+Also accepts a vector of prediction ordering, for example circular6 = c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1)}
 
 \item{input}{name of the input file}
 }
@@ -25,7 +27,7 @@ comparison of correlation matrices using randomization test of hypothesized orde
 \examples{
 randmf_results <- RTHORR::randmf(n=6,
                                  nmat=3,
-                                 ord=c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1),
+                                 ord="circular6",
                                  input=system.file("extdata", "input.txt", package = "RTHORR"))
 
 }

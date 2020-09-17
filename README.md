@@ -36,15 +36,16 @@ library(RTHORR)
 #outputs a single data frame with RTHOR results
 randall_output <- RTHORR::randall(n=6,
                                   nmat=3,
+                                  ord = "circular6",
                                   input=system.file("extdata", "input.txt", package = "RTHORR"),
-                                  description = c("sample_one", "sample_two", "sample_three"),
-                                  ord = "circular6")
+                                  description = c("sample_one", "sample_two", "sample_three"))
 
 
 #run randmf on input.txt
 #outputs a list with two dataframes (RTHOR results and comparisons)
 randmf_output <- RTHORR::randmf(n=6,
                                 nmat=3,
+                                ord = "circular6",
                                 input=system.file("extdata", "input.txt", package = "RTHORR"))
 
 

@@ -4,20 +4,20 @@
 \alias{randall}
 \title{randall function}
 \usage{
-randall(n, nmat, input, description, ord = "circular6")
+randall(n, nmat, ord = "circular6", input, description)
 }
 \arguments{
 \item{n}{number of variables (rows in the matrix)}
 
 \item{nmat}{number of matrices to be analyzed}
 
-\item{input}{name of the input file}
-
-\item{description}{any information you wish to enter describing each sample}
-
 \item{ord}{prediction ordering (default "circular6").
 For circular models there are two preset inputs for 6 and 8 variables, "circular6" and "circular8".
 Also accepts a vector of prediction ordering, for example circular6 = c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1)}
+
+\item{input}{name of the input file}
+
+\item{description}{any information you wish to enter describing each sample}
 }
 \value{
 Data frame of RTHOR model results, one row per matrix
@@ -28,8 +28,8 @@ Randomization test of hypothesized order relations
 \examples{
 randall_output <- RTHORR::randall(n=6,
                                   nmat=3,
+                                  ord = "circular6",
                                   input=system.file("extdata", "input.txt", package = "RTHORR"),
-                                  description = c("sample_one", "sample_two", "sample_three"),
-                                  ord = "circular6")
+                                  description = c("sample_one", "sample_two", "sample_three"))
 
 }

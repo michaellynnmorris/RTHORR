@@ -4,7 +4,9 @@
 #'     outputs two objects in a list: first the RTHOR results for each model, second the comparisons
 #' @param n number of variables (rows in the matrix)
 #' @param nmat number of matrices to be analyzed
-#' @param ord prediction ordering (default 6 type RIASEC circumplex)
+#' @param ord prediction ordering (default "circular6").
+#'     For circular models there are two preset inputs for 6 and 8 variables, "circular6" and "circular8".
+#'     Also accepts a vector of prediction ordering, for example circular6 = c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1)
 #' @param input name of the input file
 #'
 #' @return Data frame of RTHOR model results, one row per matrix
@@ -12,7 +14,7 @@
 #' @examples
 #' randmf_results <- RTHORR::randmf(n=6,
 #'                                  nmat=3,
-#'                                  ord=c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1),
+#'                                  ord="circular6",
 #'                                  input=system.file("extdata", "input.txt", package = "RTHORR"))
 #'
 #' @import permute
@@ -24,7 +26,18 @@
 
 
 
-randmf<-function(n,nmat,ord=c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1),input){
+randmf<-function(n,nmat,ord="circular6",input){
+
+  #process ord input
+  if (ord == "circular6"){
+    ord = c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1)
+  } else if (ord == "circular8"){
+    ord=c(1,2,3,4,3,2,1,1,2,3,4,3,2,1,2,3,4,3,1,2,3,4,1,2,3,1,2,1)
+  } else {
+    ord = ord
+  }
+
+
   # library("permute")
   setMaxperm<-(50000)
   requireNamespace("utils")
