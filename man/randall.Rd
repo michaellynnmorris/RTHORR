@@ -4,13 +4,7 @@
 \alias{randall}
 \title{randall function}
 \usage{
-randall(
-  n,
-  nmat,
-  input,
-  description,
-  ord = c(1, 2, 3, 2, 1, 1, 2, 3, 2, 1, 2, 3, 1, 2, 1)
-)
+randall(n, nmat, input, description, ord = "circular6")
 }
 \arguments{
 \item{n}{number of variables (rows in the matrix)}
@@ -21,7 +15,9 @@ randall(
 
 \item{description}{any information you wish to enter describing each sample}
 
-\item{ord}{prediction ordering (default 6 type RIASEC circumplex)}
+\item{ord}{prediction ordering (default "circular6").
+For circular models there are two preset inputs for 6 and 8 variables, "circular6" and "circular8".
+Also accepts a vector of prediction ordering, for example circular6 = c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1)}
 }
 \value{
 Data frame of RTHOR model results, one row per matrix
@@ -33,6 +29,7 @@ Randomization test of hypothesized order relations
 randall_output <- RTHORR::randall(n=6,
                                   nmat=3,
                                   input=system.file("extdata", "input.txt", package = "RTHORR"),
-                                  description = c("sample_one", "sample_two", "sample_three"))
+                                  description = c("sample_one", "sample_two", "sample_three"),
+                                  ord = "circular6")
 
 }

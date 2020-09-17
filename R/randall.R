@@ -5,8 +5,10 @@
 #' @param nmat number of matrices to be analyzed
 #' @param input name of the input file
 #' @param description any information you wish to enter describing each sample
-#' @param ord prediction ordering (default 6 type RIASEC circumplex)
-
+#' @param ord prediction ordering (default "circular6").
+#'     For circular models there are two preset inputs for 6 and 8 variables, "circular6" and "circular8".
+#'     Also accepts a vector of prediction ordering, for example circular6 = c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1)
+#'
 #'
 #' @return Data frame of RTHOR model results, one row per matrix
 #'
@@ -14,7 +16,8 @@
 #' randall_output <- RTHORR::randall(n=6,
 #'                                   nmat=3,
 #'                                   input=system.file("extdata", "input.txt", package = "RTHORR"),
-#'                                   description = c("sample_one", "sample_two", "sample_three"))
+#'                                   description = c("sample_one", "sample_two", "sample_three"),
+#'                                   ord = "circular6")
 #'
 #' @import permute
 #'
@@ -23,7 +26,18 @@
 
 
 
-randall<-function(n, nmat, input, description, ord = c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1)){
+randall<-function(n, nmat, input, description, ord = "circular6"){
+
+  #process ord input
+  if (ord == "circular6"){
+    ord = c(1,2,3,2,1,1,2,3,2,1,2,3,1,2,1)
+  } else if (ord == "circular8"){
+    ord=c(1,2,3,4,3,2,1,1,2,3,4,3,2,1,2,3,4,3,1,2,3,4,1,2,3,1,2,1)
+  } else {
+    ord = ord
+  }
+
+
   # library("permute")
   setMaxperm<-(50000)
   requireNamespace("utils")

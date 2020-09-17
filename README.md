@@ -37,7 +37,8 @@ library(RTHORR)
 randall_output <- RTHORR::randall(n=6,
                                   nmat=3,
                                   input=system.file("extdata", "input.txt", package = "RTHORR"),
-                                  description = c("sample_one", "sample_two", "sample_three"))
+                                  description = c("sample_one", "sample_two", "sample_three"),
+                                  ord = "circular6")
 
 
 #run randmf on input.txt
