@@ -18,7 +18,8 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of RTHORR is to make it simple to run a text file of correlation matrices through the randomization test of hypothesized order relations (RTHOR; Hubert & Arabie, 1987) and make comparisons of fit between pairs of matrices. This program is especially valuable in the evaluation of circumplex models of data as found in color perception, vocational interests, and interpersonal behavior.
+The goal of RTHORR is to make it simple to run a text file of correlation matrices - or raw data - through the randomization test of hypothesized order relations (RTHOR; Hubert & Arabie, 1987) and make comparisons of fit between pairs of matrices (or raw dataframes). This program is especially valuable in the evaluation of circumplex models of data as found in color perception, vocational interests, and interpersonal behavior.
+
 
 
 Hubert, L., & Arabie, P. (1987). Evaluating order hypotheses within proximity matrices. Psychological Bulletin, 102(1), 172–178. https://doi.org/10.1037/0033-2909.102.1.172
