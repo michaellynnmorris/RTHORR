@@ -69,6 +69,9 @@ randmf_from_df<-function(df_list, ord="circular6"){
 
   #read input file
 
+  #reverse order of df_list
+  df_list <- rev(df_list)
+
 
   #read in diagonal matrix as vector and then fill in
   # za<-scan(input)  #goodf read in vector
