@@ -70,6 +70,10 @@ randall_from_df<-function(df_list, description, ord = "circular6"){
   #read in diagonal matrix as vector and then fill in
   # za<-scan(input)  #goodf read in vector
 
+  #reverse order of df_list
+  df_list <- rev(df_list)
+
+
   #empty vector for correlations
   za <- vector(length = 0)
   for (d in df_list){

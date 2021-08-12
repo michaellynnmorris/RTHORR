@@ -1,7 +1,7 @@
 Package: RTHORR
 Type: Package
 Title: randomization test of hypothesized order relations (RTHOR) and comparisons
-Version: 0.1.1
+Version: 0.1.2
 Author: Terence J. G. Tracey, Michael L. Morris
 Maintainer: Michael Morris <michael.lynn.morris@gmail.com>
 Description: Performs randomization test of hypothesized order relations (RTHOR)
