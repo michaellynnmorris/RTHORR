@@ -146,12 +146,18 @@ randmf<-function(n,nmat,ord="circular6",input){
           if(scal1[j] < scal1[i]) matc1[i,j]<-0}}
 
 
-      matc2 <-matrix(nrow=np,ncol=np)
-      for(i in 1:np){
-        for(j in 1:np){
-          if(scal2[j] > scal2[i]) matc2[i,j]<-1
-          if(scal2[j] == scal2[i]) matc2[i,j]<-2
-          if(scal2[j] < scal2[i]) matc2[i,j]<-0}}
+      # matc2 <-matrix(nrow=np,ncol=np)
+      # for(i in 1:np){
+      #   for(j in 1:np){
+      #     if(scal2[j] > scal2[i]) matc2[i,j]<-1
+      #     if(scal2[j] == scal2[i]) matc2[i,j]<-2
+      #     if(scal2[j] < scal2[i]) matc2[i,j]<-0}}
+
+      # Replace first pair of nested for loops with vectorized operations
+      matc2 <- matrix(nrow = np, ncol = np)
+      matc2[] <- as.numeric(scal2[rep(1:np, each = np)] > scal2[rep(1:np, np)])
+      matc2[scal2[rep(1:np, each = np)] == scal2[rep(1:np, np)]] <- 2
+
       nagr1<-0
       nntie1<-0
       nagr2<-0
